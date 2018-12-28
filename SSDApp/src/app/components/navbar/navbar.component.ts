@@ -8,7 +8,7 @@ import { SharingService } from 'src/app/services/sharing.service';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private sharingService: SharingService) { }
 
   ngOnInit() {
   }
