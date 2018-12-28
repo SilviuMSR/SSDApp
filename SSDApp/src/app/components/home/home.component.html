@@ -1,0 +1,20 @@
+<div class="container-fluid">
+    <div class="row content" *ngIf="sharingService.loggedIn && sharingService.adminCheck">
+        <div class="col-sm-2 sidenav">
+            <app-admin></app-admin>
+        </div>
+        <div class="col-sm-10">
+            <app-sidebar></app-sidebar>
+        </div>
+    </div>
+    <div class="row content" *ngIf="sharingService.loggedIn && !sharingService.adminCheck">
+        <div class="col-sm-3 sidenav">
+            <app-coach></app-coach>
+        </div>
+        <div class="col-sm-9">
+            <app-sidebarcoach></app-sidebarcoach>
+        </div>
+    <div class="notLogged" *ngIf="!sharingService.loggedIn">
+        <app-not-login></app-not-login>
+    </div>
+</div>

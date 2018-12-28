@@ -1,0 +1,57 @@
+<div class="adminoptions" style="text-align: center; margin-top:20px; padding:20px;">
+    <h5>Admin options</h5>
+</div>
+    <div class="first" style="float:left; margin-left:100px; text-align:center;">
+        <h6>->Insert game between two teams<-</h6>
+            <form style="float:left;">
+                <label for="fname">First team name</label><br>
+                <input type="text" id="fname" name="fname" placeholder="Insert first team name..."><br> 
+        
+                <label for="sname">Second team name</label><br>
+                <input type="text" id="sname" name="sname" placeholder="Insert second team name..."><br>
+        
+                <input type="submit" routerLink="/" value="Set game"><br><br>
+            </form>
+        </div>
+        <div class="games" style="float:left; margin-left:100px;">
+                <br><table class="table">
+                        <thead class="table-dark">
+                            <tr>
+                                <th scope="col">Index</th>
+                                <th scope="col">Home Team</th>
+                                <th scope="col">Guest Team</th>
+                                <th scope="col">Score</th>
+                            </tr>
+                        
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <th scope="row">AS FLACARA FAGET</th>
+                                <th scope="row">FC DUDESTII NOI</th>
+                                <th scope="row">3-2</th>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <th scope="row">FC ARSENAL PLOIEST</th>
+                                <th scope="row">AS FLACARA FAGET</th>
+                                <th scope="row">Not yet</th>
+                            </tr>
+                        </tbody>
+                    </table>
+        </div>
+        <div class="second" style="float:right; margin-right:50px; text-align: center;">
+        <h6>->Set score to an existing game<-</h6>
+            <form>
+                    <label for="fname">First team name</label><br>
+                    <input type="text" id="fname" name="fname" placeholder="Insert first team name..."><br> 
+            
+                    <label for="sname">Second team name</label><br>
+                    <input type="text" id="sname" name="sname" placeholder="Insert second team name..."><br>
+
+                    <label for="score">Score</label>
+                    <input type="text" id="score" name="score" placeholder="Insert score...."><br>
+            
+                    <input type="submit" routerLink="/" value="Set score"><br>
+            </form>
+        </div>

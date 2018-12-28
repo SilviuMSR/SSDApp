@@ -1,0 +1,29 @@
+import { Injectable } from '@angular/core';
+import {HttpClientModule, HttpClient} from '@angular/common/http';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class CustomHttpService {
+
+  private URL = 'http://localhost:8080/api';
+
+  constructor(private httpClient: HttpClient) { }
+
+  post(link : string, body : any, options?: any)
+  {
+    return this.httpClient.post(this.getUrl(link), body, options);
+  }
+
+  get(link: string, options?: any)
+  {
+    return this.httpClient.get(this.getUrl(link), options);
+  }
+
+  private getUrl(link: string) {
+    if (link.indexOf('/') === 0) {
+      return this.URL + link;
+    }
+    return this.URL + '/' + link;
+  }
+}
