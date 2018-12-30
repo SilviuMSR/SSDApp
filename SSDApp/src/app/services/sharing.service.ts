@@ -9,7 +9,9 @@ export class SharingService {
   adminCheck: boolean = true;
   loggedIn: boolean = false;
 
-  constructor() { }
+  constructor() { 
+    
+  }
 
   setAdminOptions()
   {

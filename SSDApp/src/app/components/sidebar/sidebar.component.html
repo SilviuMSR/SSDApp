@@ -4,13 +4,13 @@
     <div class="first" style="float:left; margin-left:100px; text-align:center;">
         <h6>->Insert game between two teams<-</h6>
             <form style="float:left;">
-                <label for="fname">First team name</label><br>
-                <input type="text" id="fname" name="fname" placeholder="Insert first team name..."><br> 
+                <label for="homeTeam">First team name</label><br>
+                <input type="text" [(ngModel)]="homeTeam"  name="homeTeam" placeholder="Insert first team name..."><br> 
         
-                <label for="sname">Second team name</label><br>
-                <input type="text" id="sname" name="sname" placeholder="Insert second team name..."><br>
+                <label for="guestTeam">Second team name</label><br>
+                <input type="text" [(ngModel)]="guestTeam" name="guestTeam" placeholder="Insert second team name..."><br>
         
-                <input type="submit" routerLink="/" value="Set game"><br><br>
+                <input type="submit" (click)="addGame()" routerLink="/"  value="Set game"><br><br>
             </form>
         </div>
         <div class="games" style="float:left; margin-left:100px;">
@@ -22,20 +22,13 @@
                                 <th scope="col">Guest Team</th>
                                 <th scope="col">Score</th>
                             </tr>
-                        
                         </thead>
-                        <tbody>
+                        <tbody *ngFor="let g of allgames">
                             <tr>
-                                <th scope="row">1</th>
-                                <th scope="row">AS FLACARA FAGET</th>
-                                <th scope="row">FC DUDESTII NOI</th>
-                                <th scope="row">3-2</th>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <th scope="row">FC ARSENAL PLOIEST</th>
-                                <th scope="row">AS FLACARA FAGET</th>
-                                <th scope="row">Not yet</th>
+                                <th scope="row">{{g.gameId}}</th>
+                                <th scope="row">{{g.homeTeam}}</th>
+                                <th scope="row">{{g.guestTeam}}</th>
+                                <th scope="row">{{g.gameScore}}</th>
                             </tr>
                         </tbody>
                     </table>

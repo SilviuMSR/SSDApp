@@ -16,6 +16,10 @@ import { RegisterComponent } from './components/register/register.component';
 import { SidebarcoachComponent } from './components/sidebarcoach/sidebarcoach.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+ 
+import { ToastrModule } from 'ngx-toastr';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +38,12 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      positionClass: 'toast-bottom-center',
+      preventDuplicates: true,
+    }),
     AppRoutingModule
   ],
   providers: [HttpClient],

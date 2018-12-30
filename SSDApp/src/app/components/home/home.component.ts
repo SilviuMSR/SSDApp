@@ -8,21 +8,14 @@ import { SharingService } from '../../services/sharing.service';
 })
 export class HomeComponent implements OnInit {
 
+
   constructor(private sharingService: SharingService) 
   {
-    
+       
   }
 
-
   ngOnInit() {
-    if(this.sharingService.adminCheck == true)
-    {
-      this.sharingService.setAdminOptions();
-    }
-    else
-    {
-      this.sharingService.setUserOptions();
-    }
+    
   }
 
 

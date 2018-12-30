@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { SharingService } from '../../services/sharing.service';
 import { CustomHttpService } from 'src/app/services/custom-http.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,8 @@ export class LoginComponent implements OnInit {
   cpassword : string;
 
   constructor(private sharingService: SharingService,
-    private customHttp: CustomHttpService) {
+    private customHttp: CustomHttpService,
+    private toastrService: ToastrService) {
   }
 
 
@@ -28,17 +30,18 @@ export class LoginComponent implements OnInit {
         {
           this.sharingService.setAdminOptions();
           this.sharingService.setLoggedIn();
+          this.toastrService.success("Successfully logged in as admin!");
         }
         else if(value == 1)
         {
+          this.toastrService.success("Successfully logged in as coach");
           this.sharingService.setUserOptions();
           this.sharingService.setLoggedIn();
         }
         else if(value == -1)
         {
-          console.log("Not found");
+          this.toastrService.error("Sorry, this account is not existing!");
         }
-        console.log(value);
       }
     )
   }
