@@ -7,13 +7,14 @@ import { HomeComponent } from './components/home/home.component';
 import { RegisterComponent } from './components/register/register.component';
 import { SidebarcoachComponent } from './components/sidebarcoach/sidebarcoach.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'not-login', component: NotLoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'coach', component: SidebarcoachComponent},
-  {path: 'admin', component: SidebarComponent},
+  {path: 'coach', canActivate : [AuthGuard], component: SidebarcoachComponent},
+  {path: 'admin', canActivate : [AuthGuard], component: SidebarComponent},
   {path: 'login', component: LoginComponent},
 ];
 

@@ -13,6 +13,20 @@ export class SharingService {
     
   }
 
+  get isLoggedInAndAdmin()
+  {
+    if(this.loggedIn == true && this.adminCheck == true)
+      return true;
+    else return false;
+  }
+
+  get isLoggedInAndCoach()
+  {
+    if(this.loggedIn == true && this.adminCheck == false)
+      return true;
+    else return false;
+  }
+
   setAdminOptions()
   {
     this.adminCheck = true;

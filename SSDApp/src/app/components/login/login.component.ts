@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { SharingService } from '../../services/sharing.service';
 import { CustomHttpService } from 'src/app/services/custom-http.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private sharingService: SharingService,
     private customHttp: CustomHttpService,
+    private router: Router,
     private toastrService: ToastrService) {
   }
 
@@ -29,14 +31,16 @@ export class LoginComponent implements OnInit {
         if(value == 0)
         {
           this.sharingService.setAdminOptions();
-          location.href="http://localhost:4200/admin";
+          //location.href="http://localhost:4200/admin";
+          this.router.navigate(['admin']);
           this.sharingService.setLoggedIn();
           this.toastrService.success("Successfully logged in as admin!");
         }
         else if(value == 1)
         {
           this.toastrService.success("Successfully logged in as coach");
-          location.href="http://localhost:4200/coach";
+          //location.href="http://localhost:4200/coach";
+          this.router.navigate(['coach']);
           this.sharingService.setUserOptions();
           this.sharingService.setLoggedIn();
         }
