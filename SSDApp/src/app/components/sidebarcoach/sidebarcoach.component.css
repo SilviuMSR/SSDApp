@@ -24,10 +24,46 @@ input[type=submit]:hover {
 }
 
 form {
-    margin-left: 0px;
+    margin-top: 30px;
+    padding-left: 350px;
 }
 
-h6 {
-    font-size: 20px;
-}
 
+
+* {
+    box-sizing: border-box;
+  }
+  
+  /* Create three equal columns that floats next to each other */
+  .column {
+    float: left;
+    width: 33.3%;
+    padding: 10px;
+  }
+
+  .row1 {
+      margin-top: 50px;
+  }
+  
+  /* Clear floats after the columns */
+  .row1:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .column2 {
+      float: left;
+      width: 50%;
+      padding: 10px;
+  }
+
+  .row2 {
+      margin-top: 50px;
+  }
+
+  .row2:after {
+      content: "";
+      display: table;
+      clear: both;
+  }

@@ -10,8 +10,8 @@ import { LoginComponent } from './components/login/login.component';
 import { NotLoginComponent } from './components/not-login/not-login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './components/home/home.component';
-import { AdminComponent } from './components/admin/admin.component';
-import { CoachComponent } from './components/coach/coach.component';
+import { AdminComponent } from './components/sidebar/admin/admin.component';
+import { CoachComponent } from './components/sidebarcoach/coach/coach.component';
 import { RegisterComponent } from './components/register/register.component';
 import { SidebarcoachComponent } from './components/sidebarcoach/sidebarcoach.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -32,7 +32,7 @@ import { ToastrModule } from 'ngx-toastr';
     AdminComponent,
     CoachComponent,
     RegisterComponent,
-    SidebarcoachComponent,
+    SidebarcoachComponent
   ],
   imports: [
     BrowserModule,

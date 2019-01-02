@@ -32,7 +32,7 @@ export class SidebarComponent implements OnInit {
     this.customHttp.post('/addGame', {homeTeam : this.homeTeam , guestTeam : this.guestTeam}).subscribe(
       (value : any)  => {
         if(value == true) this.toastrService.success("Successfully inserted game");
-        else this.toastrService.error("Game was not inserted, please check again teams");
+        else this.toastrService.error("Game was not inserted, please check teams again");
       }
     )
   }

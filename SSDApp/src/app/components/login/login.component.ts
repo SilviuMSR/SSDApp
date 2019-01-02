@@ -29,12 +29,14 @@ export class LoginComponent implements OnInit {
         if(value == 0)
         {
           this.sharingService.setAdminOptions();
+          location.href="http://localhost:4200/admin";
           this.sharingService.setLoggedIn();
           this.toastrService.success("Successfully logged in as admin!");
         }
         else if(value == 1)
         {
           this.toastrService.success("Successfully logged in as coach");
+          location.href="http://localhost:4200/coach";
           this.sharingService.setUserOptions();
           this.sharingService.setLoggedIn();
         }
