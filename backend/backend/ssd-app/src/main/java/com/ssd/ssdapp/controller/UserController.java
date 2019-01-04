@@ -1,4 +1,6 @@
 package com.ssd.ssdapp.controller;
+import com.ssd.ssdapp.model.Team;
+import com.ssd.ssdapp.repositories.TeamRepository;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +16,9 @@ import com.ssd.ssdapp.repositories.UserRepository;
 @Slf4j
 public class UserController {
 
+
     private UserRepository userRepository;
+    private TeamRepository teamRepository;
 
     @GetMapping("/hello")
     public String sayHello() {
@@ -29,11 +33,25 @@ public class UserController {
                 .teamname(userDTO.getTeamname())
                 .password(userDTO.getPassword())
                 .build();
+
+        Team team = Team.builder()
+                .teamName(userDTO.getTeamname())
+                .teamPoints(0)
+                .build();
+
         if(user.getName().equals("") || user.getPassword().equals(""))
         {
+            log.error("Empty username and password are not allowed");
+            return false; // empty name or password
+        }
+        if(user.getName().equals("admin"))
+        {
+            log.error("You have no right to create admin account");
             return false;
         }
+
         userRepository.save(user);
+        teamRepository.save(team);
         return true;
     }
 
@@ -60,11 +78,10 @@ public class UserController {
         }
     }
 
-
-
     @Autowired
-    public void setUserRepository(UserRepository userRepository) {
+    public void setUserRepository(UserRepository userRepository, TeamRepository teamRepository) {
         this.userRepository = userRepository;
+        this.teamRepository = teamRepository;
     }
 
 }
