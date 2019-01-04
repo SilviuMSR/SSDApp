@@ -20,10 +20,6 @@ public class UserController {
     private UserRepository userRepository;
     private TeamRepository teamRepository;
 
-    @GetMapping("/hello")
-    public String sayHello() {
-        return "Hello World!";
-    }
 
     @PostMapping("/saveUser")
     public boolean saveUser(@RequestBody UserDTO userDTO) {
@@ -32,6 +28,7 @@ public class UserController {
                 .name(userDTO.getName())
                 .teamname(userDTO.getTeamname())
                 .password(userDTO.getPassword())
+                .isLoggedIn(0)
                 .build();
 
         Team team = Team.builder()
@@ -91,5 +88,5 @@ class UserDTO {
     private String name;
     private String teamname;
     private String password;
-
+    private Integer isLoggedIn;
 }

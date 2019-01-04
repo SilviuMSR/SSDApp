@@ -1,7 +1,7 @@
 <div class="container-fluid">
 <div class="adminoptions" style="text-align: center; margin-top:20px; padding:20px; color:white">
     <h5>Admin options</h5>
-    <button type="button" class="btn btn-secondary" routerLink="" style="float:right; margin-top:0px;">Logout</button>
+    <button type="button" class="btn btn-secondary" routerLink="" (click)="logOut()" style="float:right; margin-top:0px;">Logout</button>
 </div>
 
 <div class="row">
@@ -18,7 +18,7 @@
                 <label for="guestTeam" style="color: white">Second team name</label><br>
                 <input type="text" [(ngModel)]="guestTeam" name="guestTeam" placeholder="Insert second team name..."><br>
         
-                <input type="submit" (click)="addGame()" routerLink="/"  value="Set game"><br><br>
+                <input type="submit" (click)="addGame(); reloadPage();" routerLink="/admin"  value="Set game"><br><br>
             </form>
     </div>
 
@@ -38,25 +38,28 @@
                             <th scope="row">{{g.gameId}}</th>
                             <th scope="row">{{g.homeTeam}}</th>
                             <th scope="row">{{g.guestTeam}}</th>
-                            <th scope="row">{{g.gameScore}}</th>
+                            <th scope="row">{{g.homeScore}}-{{g.guestScore}}</th>
                         </tr>
                     </tbody>
                 </table>
     </div>
-
+    
     <div class="column">
             <h5 style="margin-top:40px; text-align: center; color:white;">->Set score to an existing game<-</h5>
             <form>
                     <label for="fname" style="color: white">First team name</label><br>
-                    <input type="text" id="fname" name="fname" placeholder="Insert first team name..."><br> 
+                    <input type="text" [(ngModel)]="ht" name="ht" placeholder="Insert first team name..."><br> 
             
                     <label for="sname" style="color: white">Second team name</label><br>
-                    <input type="text" id="sname" name="sname" placeholder="Insert second team name..."><br>
+                    <input type="text" [(ngModel)]="gt" name="gt" placeholder="Insert second team name..."><br>
 
-                    <label for="score" style="color: white">Score</label>
-                    <input type="text" id="score" name="score" placeholder="Insert score...."><br>
+                    <label for="score" style="color: white">Home Score</label>
+                    <input type="text" [(ngModel)]="homeScore" name="homeScore" placeholder="Insert score...."><br>
+                    
+                    <label for="score" style="color: white">Home Score</label>
+                    <input type="text" [(ngModel)]="guestScore" name="guestScore" placeholder="Insert score...."><br>
             
-                    <input type="submit" routerLink="/" value="Set score"><br>
+                    <input type="submit" routerLink="/admin" (click)="setScore(); reloadPage();" value="Set score"><br>
             </form>
     </div>
 </div>

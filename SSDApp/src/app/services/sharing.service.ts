@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+import { User } from '../models/user';
+import { CustomHttpService } from './custom-http.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,9 +11,16 @@ export class SharingService {
   
   adminCheck: boolean = true;
   loggedIn: boolean = false;
+  name : string;
+  password : string;
 
-  constructor() { 
+  constructor(private http: CustomHttpService) { 
     
+  }
+
+  checkLogged()
+  {
+    this.http.get('/checkLogged?name=' + this.name + "password=" + this.password).subscribe();
   }
 
   get isLoggedInAndAdmin()

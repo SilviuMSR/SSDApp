@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
         if(value == 0)
         {
           this.sharingService.setAdminOptions();
-          //location.href="http://localhost:4200/admin";
+          localStorage.setItem('token', 'admintoken');
           this.router.navigate(['admin']);
           this.sharingService.setLoggedIn();
           this.toastrService.success("Successfully logged in as admin!");
@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
         else if(value == 1)
         {
           this.toastrService.success("Successfully logged in as coach");
-          //location.href="http://localhost:4200/coach";
+          localStorage.setItem('token', 'coachtoken');
           this.router.navigate(['coach']);
           this.sharingService.setUserOptions();
           this.sharingService.setLoggedIn();
@@ -50,6 +50,7 @@ export class LoginComponent implements OnInit {
         }
       }
     )
+    
   }
 
 }

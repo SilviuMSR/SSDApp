@@ -22,7 +22,9 @@ public class TeamController {
     @GetMapping("/teams")
     public Iterable<Team> getAllTeams()
     {
-        return teamRepository.findAll();
+        Iterable<Team> teams = teamRepository.findAllByOrderByTeamPointsDesc() ;
+
+        return teams;
     }
 
     @Autowired

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CustomHttpService } from 'src/app/services/custom-http.service';
 import { Game } from 'src/app/models/game';
 import { Toast, ToastrService } from 'ngx-toastr';
+import { SharingService } from 'src/app/services/sharing.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -11,20 +12,24 @@ import { Toast, ToastrService } from 'ngx-toastr';
 export class SidebarComponent implements OnInit {
 
   constructor(private customHttp : CustomHttpService,
+    private sharingService: SharingService,
     private toastrService: ToastrService) { }
   
   allgames : Game[] = [];
   homeTeam : string;
   guestTeam : string;
+  ht : string;
+  gt : string;
+  homeScore : number;
+  guestScore : number;
   
 
   ngOnInit() {
-    this.customHttp.get('/games').subscribe(
-      (value : any) => {
-        this.allgames = value;
-        console.log(this.allgames);
-      }
-    )
+      this.customHttp.get('/games').subscribe(
+        (value : any) => {
+          this.allgames = value;
+        }
+      )
   }
 
   addGame()
@@ -36,5 +41,26 @@ export class SidebarComponent implements OnInit {
       }
     )
   }
+
+  setScore()
+  {
+    this.customHttp.post('/setScore', {homeTeam: this.ht, guestTeam: this.gt, homeScore: this.homeScore, guestScore: this.guestScore}).subscribe(
+      (value : any) => {
+        console.log(value);
+        if(value == true) this.toastrService.success("Score set succesfully!");
+        else this.toastrService.error("Score was not set, please check teams again");
+      }
+    )
+  }
+
+  reloadPage(){
+    window.location.reload();
+  }
+
+  logOut()
+  {
+    localStorage.clear();
+  }
+
 
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import com.ssd.ssdapp.repositories.GameRepository;
 import com.ssd.ssdapp.repositories.TeamRepository;
 import com.ssd.ssdapp.model.Game;
+import com.ssd.ssdapp.model.Team;
 
 @RestController
 @RequestMapping("/api")
@@ -48,6 +49,47 @@ public class GameController {
         return true;
     }
 
+
+    @PostMapping("/setScore")
+    public boolean setScore(@RequestBody GameDTO gameDTO)
+    {
+        if(gameRepository.findByHomeTeamAndGuestTeam(gameDTO.getHomeTeam(), gameDTO.getGuestTeam()) == null)
+        {
+            return false;
+        }
+
+        Game updatedGame = gameRepository.findByHomeTeamAndGuestTeam(gameDTO.getHomeTeam(), gameDTO.getGuestTeam());
+        updatedGame.setHomeScore(gameDTO.getHomeScore());
+        updatedGame.setGuestScore(gameDTO.getGuestScore());
+        gameRepository.save(updatedGame);
+
+        Team homeTeam = teamRepository.findByTeamName(gameDTO.getHomeTeam());
+        Team guestTeam = teamRepository.findByTeamName(gameDTO.getGuestTeam());
+
+        if(updatedGame.getHomeScore() > updatedGame.getGuestScore())
+        {
+            homeTeam.setTeamPoints(homeTeam.getTeamPoints() + 3);
+            teamRepository.save(homeTeam);
+            return true;
+        }
+        else if(updatedGame.getHomeScore() < updatedGame.getGuestScore())
+        {
+            guestTeam.setTeamPoints(guestTeam.getTeamPoints() + 3);
+            teamRepository.save(guestTeam);
+            return true;
+        }
+        else if(updatedGame.getHomeScore() == updatedGame.getGuestScore())
+        {
+            homeTeam.setTeamPoints(homeTeam.getTeamPoints() + 1);
+            guestTeam.setTeamPoints(guestTeam.getTeamPoints() + 1);
+            teamRepository.save(homeTeam);
+            teamRepository.save(guestTeam);
+            return true;
+        }
+
+        return true;
+    }
+
     @Autowired
     public void setGameRepository(GameRepository gameRepository, TeamRepository teamRepository)
     {
@@ -62,4 +104,7 @@ class GameDTO
 {
     private String homeTeam;
     private String guestTeam;
+    private Integer homeScore;
+    private Integer guestScore;
+
 }

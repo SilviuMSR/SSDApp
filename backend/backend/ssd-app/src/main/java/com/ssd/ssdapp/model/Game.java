@@ -24,5 +24,6 @@ public class Game {
 
     private String guestTeam;
 
-    private String gameScore;
+    private Integer homeScore;
+    private Integer guestScore;
 }
